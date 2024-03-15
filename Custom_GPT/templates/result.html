@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+</head>
+<body>
+    <h1>Search Result</h1>
+    {% if result %}
+        {% if result == "Thank You!" %}
+            <p>{{ result }}</p>
+        {% elif result is iterable %}
+            <ul>
+                {% for row in result %}
+                    <li>
+                        {% for key, value in row.items() %}
+                            <strong>{{ key }}:</strong> {{ value }}&nbsp;&nbsp;&nbsp;
+                        {% endfor %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ result }}</p>
+        {% endif %}
+    {% else %}
+        <p>No matching records found.</p>
+    {% endif %}
+</body>
+</html>
